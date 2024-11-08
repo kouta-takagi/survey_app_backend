@@ -1,22 +1,19 @@
 class SurveysController < ApplicationController
   def index
     @surveys = Survey.all
-    render json @surveys
+    render json: @surveys
   end
 
   def show
     @survey = Survey.find(params[:id])
     @questions = @survey.questions.includes(:answers)
-    render json: {
-      survey: @survey,
-      questions: @questions.as_json(include: :answers)
-    }
+    render json: @survey
   end
 
   def create
     @survey = Survey.new(survey_params)
     if @survey.save
-      render status: :created
+      render json: @survey, status: :created
     else
       render status: :unprocessable_entity
     end

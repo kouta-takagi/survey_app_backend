@@ -1,8 +1,13 @@
 class AnswersController < ApplicationController
+  def index
+    @answers = Question.find(params[:question_id]).answers
+    render json: @answers
+  end
+
   def create
-    @answer = Answer.new(answer_params)
+    @answer = Question.find(params[:question_id]).answers.new(answer_params)
     if @answer.save
-      render status: :created
+      render json: @answer, status: :created
     else
       render status: :unprocessable_entity
     end
@@ -10,6 +15,6 @@ class AnswersController < ApplicationController
 
   private
   def answer_params
-    params.require(:answer).permit(:response, :question_id)
+    params.require(:answer).permit(:response)
   end
 end

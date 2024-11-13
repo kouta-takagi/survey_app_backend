@@ -9,7 +9,8 @@ class QuestionsController < ApplicationController
     if @question.save
       render json: @question, status: :created
     else
-      render status: :unprocessable_entity
+      render json: @question.errors.full_messages, status: :unprocessable_entity
+      binding.irb
     end
   end
 

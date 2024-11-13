@@ -5,11 +5,12 @@ class AnswersController < ApplicationController
   end
 
   def create
-    @answer = Question.find(params[:question_id]).answers.new(answer_params)
+    # @answer = Question.find(params[:question_id]).answers.new(answer_params)
+    @answer = Answer.new
     if @answer.save
       render json: @answer, status: :created
     else
-      render status: :unprocessable_entity
+      render json: @answer.errors.full_messages, status: :unprocessable_entity
     end
   end
 

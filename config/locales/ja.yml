@@ -8,10 +8,13 @@ ja:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
     attributes:
+      survey:
+        title: タイトル
+        description: 説明
       question:
         content: 本文
       answer:
-        response:
+        response: テキスト
   date:
     abbr_day_names:
       - 日

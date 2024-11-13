@@ -15,7 +15,7 @@ class SurveysController < ApplicationController
     if @survey.save
       render json: @survey, status: :created
     else
-      render status: :unprocessable_entity
+      render json: @survey.errors.full_messages, status: :unprocessable_entity
     end
   end
 

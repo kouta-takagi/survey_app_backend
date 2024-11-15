@@ -11,7 +11,7 @@ class SurveysController < ApplicationController
   end
 
   def create
-    @survey = Survey.new(survey_params)
+    @survey = Survey.new
     if @survey.save
       render json: @survey, status: :created
     else

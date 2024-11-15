@@ -5,8 +5,8 @@ class AnswersController < ApplicationController
   end
 
   def create
-    # @answer = Question.find(params[:question_id]).answers.new(answer_params)
-    @answer = Answer.new
+    @answer = Question.find(params[:question_id]).answers.new(answer_params)
+
     if @answer.save
       render json: @answer, status: :created
     else

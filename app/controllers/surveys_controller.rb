@@ -1,4 +1,6 @@
 class SurveysController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @surveys = Survey.all
     render json: @surveys
@@ -11,7 +13,7 @@ class SurveysController < ApplicationController
   end
 
   def create
-    @survey = Survey.new
+    @survey = Survey.new(survey_params)
     if @survey.save
       render json: @survey, status: :created
     else

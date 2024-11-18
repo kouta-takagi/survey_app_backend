@@ -1,4 +1,6 @@
 class AnswersController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @answers = Question.find(params[:question_id]).answers
     render json: @answers

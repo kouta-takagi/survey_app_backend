@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @questions = Survey.find(params[:survey_id]).questions.includes(:answers)
     render json: @questions, include: :answers

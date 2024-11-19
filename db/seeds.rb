@@ -8,12 +8,15 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+
+user = User.find(1)
+
 3.times do |i|
-  @survey = Survey.create(title: "title#{i+1}", description: "description#{i+1}")
+  @survey = user.surveys.create(title: "title#{i+1}", description: "description#{i+1}")
   3.times do |i2|
-    @question = @survey.questions.create(content: "content#{i2+1}")
+    @question = @survey.questions.create(content: "content#{i2+1}", user: user)
     3.times do |i3|
-      @question.answers.create(response: "response#{i3+1}")
+      @question.answers.create(response: "response#{i3+1}", user: user)
     end
   end
 end

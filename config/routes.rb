@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   # end
   resources :surveys do
     resources :questions do
-      resources :answers
+      resources :answers, only: [ :show ]
     end
+    resources :answers, only: [ :create ]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

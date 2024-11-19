@@ -8,6 +8,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Survey.find(params[:survey_id]).questions.new(question_params)
+    @question.user = current_user
     if @question.save
       render json: @question, status: :created
     else

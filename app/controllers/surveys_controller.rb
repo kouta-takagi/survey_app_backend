@@ -21,6 +21,12 @@ class SurveysController < ApplicationController
     end
   end
 
+  def destroy
+    @survey = Survey.find(params[:id])
+    @survey.destroy
+    render json: @survey, status: :ok
+  end
+
   private
   def survey_params
     params.require(:survey).permit(:title, :description)

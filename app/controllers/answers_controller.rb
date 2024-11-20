@@ -8,16 +8,19 @@ class AnswersController < ApplicationController
 
   def create
     begin
+      @questions= []
       ActiveRecord::Base.transaction do
         params[:answers].each do |index, response|
-          Question.find(index).answers.create(response: response, user: current_user)
+          question = Question.find(index).answers.create!(response: response, user: current_user)
+          @questions << question
         end
       end
-    rescue => e
-      puts "トランザクションが失敗しました: #{e.message}"
-      render status: :unprocessable_entity
+      render json: { message: "解答の作成が成功しました" }, status: :created
+    rescue
+      render json: { message: "すべてのフォームを入力してください" }, status: :unprocessable_entity
     end
-    render json: { message: "解答の作成が成功しました" }, status: :created
+
+
     # @answer = Question.find(params[:question_id]).answers.new(answer_params)
     # @answer.user = current_user
 

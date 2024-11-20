@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  mount_devise_token_auth_for "User", at: "auth"
+  mount_devise_token_auth_for "User", at: "auth", controllers: {
+    registrations: "auth/registrations"
+  }
   # scope format: "json" do
   #   resources :users
   # end
   resources :surveys do
     resources :questions do
-      resources :answers, only: [ :show ]
+      resources :answers, only: [ :index ]
     end
     resources :answers, only: [ :create ]
   end

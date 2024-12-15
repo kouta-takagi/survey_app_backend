@@ -9,13 +9,11 @@
 - **詳細 (description)**: 文字列
 - **Usersテーブルの外部キー**
 ### Questionsテーブル（質問）
-- **タイトル (title)**: 文字列
-- **詳細 (description)**: 文字列
+- **質問内容 (content)**: 文字列
 - **Usersテーブルの外部キー**
 - **Surveysテーブルの外部キー**
 ### Answersテーブル（回答）
-- **タイトル (title)**: 文字列
-- **詳細 (description)**: 文字列
+- **回答 (response)**: 文字列
 - **Usersテーブルの外部キー**
 - **Questionsテーブルの外部キー**
 
